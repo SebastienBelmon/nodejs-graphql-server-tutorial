@@ -1,24 +1,14 @@
 const { GraphQLServer } = require('graphql-yoga');
-const { Prisma } = require('prisma-binding')
+const { Prisma } = require('prisma-binding');
+
+const Query = require('./resolvers/Query');
+const Mutation = require('./resolvers/Mutation');
+const AuthPayload = require('./resolvers/AuthPayload');
 
 const resolvers = {
-  Query: {
-    info: () => `This is the API of hackernuews Clone by seb`,
-    feed: (root, args, context, info) => {
-      return context.db.query.links({}, info);
-    },
-  },
-
-  Mutation: {
-    post: (root, args, context, info) => {
-      return context.db.mutation.createLink({
-        data: {
-          url: args.url,
-          description: args.description,
-        },
-      }, info);
-    }
-  },
+  Query,
+  Mutation,
+  AuthPayload,
 };
 
 const server = new GraphQLServer({
@@ -31,8 +21,8 @@ const server = new GraphQLServer({
       endpoint: 'https://eu1.prisma.sh/sebastien-belmon-75a1d6/database/dev',
       secret: 'mysecret123',
       debug: true,
-    })
-  })
+    }),
+  }),
 });
 
 server.start(() => console.log(`Server is running on http://localhost:4000`));
