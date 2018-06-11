@@ -16,7 +16,7 @@ const resolvers = {
     link: (root, args) => {
       const link = links.filter(o => o.id === args.id)[0];
       return link;
-    }
+    },
   },
 
   Mutation: {
@@ -38,7 +38,7 @@ const resolvers = {
         }
         return null;
       });
-      
+
       const newLink = {
         ...links.filter((o, i) => o.id === args.id)[0],
         url: args.url,
@@ -46,7 +46,7 @@ const resolvers = {
       };
 
       links.splice(index, 1, newLink);
-      
+
       return newLink;
     },
 
