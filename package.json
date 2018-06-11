@@ -8,6 +8,7 @@
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {
-    "graphql-yoga": "^1.14.7"
+    "graphql-yoga": "^1.14.7",
+    "prisma-binding": "^2.0.2"
   }
 }
